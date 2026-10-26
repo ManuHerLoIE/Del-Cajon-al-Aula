@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del cajón al aula | Campaña de donación</title>
+<meta name="description" content="Dona los componentes electrónicos que ya no usas. Los convertimos en kits para que estudiantes de colegios públicos aprendan electricidad.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Del cajón al aula">
+<meta property="og:description" content="Dona los componentes electrónicos que ya no usas. Los convertimos en kits para que estudiantes de colegios públicos aprendan electricidad.">
+<meta property="og:locale" content="es_CO">
+<meta name="theme-color" content="#00629B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18 30a14 14 0 0 1 28 0v12H18z' fill='%23F5A623'/%3E%3Crect x='14' y='40' width='36' height='6' rx='2' fill='%2300629B'/%3E%3Crect x='24' y='46' width='4' height='16' fill='%2300629B'/%3E%3Crect x='36' y='46' width='4' height='11' fill='%2300629B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap">
+
+<script>
+/* =====================================================================
+   DATOS DE LA CAMPAÑA: edita solo este bloque.
+   - Lo que esté entre [corchetes] se ve tal cual hasta que lo cambies.
+   - Respeta las comillas y las comas al final de cada línea.
+   ===================================================================== */
+var CONFIG = {
+  grupo:     "[NOMBRE DEL GRUPO DE INVESTIGACIÓN]",
+  colegio:   "[NOMBRE DEL COLEGIO]",
+  municipio: "[MUNICIPIO]",
+
+  // Punto de recaudo
+  lugar:     "[SEDE, EDIFICIO Y SALÓN]",
+  fechas:    "[FECHAS]",
+  horario:   "[HORARIO]",
+
+  correo:    "mfhernandezl@udistrital.edu.co",
+
+  // Enlace del formulario para sumarse (por ejemplo, un Google Forms).
+  // Si lo dejas vacío, el botón «Quiero sumarme» abre un correo.
+  formulario: "",
+
+  // Avance de cada paso: "hecho", "en-curso" o "proximamente".
+  avance: {
+    recibir:  "en-curso",
+    revisar:  "proximamente",
+    armar:    "proximamente",
+    guias:    "proximamente",
+    docente:  "proximamente",
+    talleres: "proximamente",
+    entregar: "proximamente"
+  },
+
+  // Fotos: súbelas YA DIFUMINADAS (con difuminar.html) a la carpeta fotos/
+  // con estos nombres. La primera se ve grande. Mientras una foto no
+  // exista, en su lugar aparece «Foto próximamente».
+  fotos: [
+    { archivo: "fotos/colegio.jpg",       texto: "El colegio" },
+    { archivo: "fotos/estudiantes-1.jpg", texto: "Los estudiantes" },
+    { archivo: "fotos/estudiantes-2.jpg", texto: "En el aula" },
+    { archivo: "fotos/estudiantes-3.jpg", texto: "Trabajo en equipo" },
+    { archivo: "fotos/estudiantes-4.jpg", texto: "Manos a la obra" }
+  ],
+
+  // Logos de quienes organizan: súbelos a la carpeta logos/.
+  // Si falta alguno, se muestra el nombre. Nombre vacío = usa el del grupo.
+  logos: [
+    { archivo: "logos/grupo.png",        nombre: "" },
+    { archivo: "logos/rama-ieee-ud.png", nombre: "Rama Estudiantil IEEE UD" },
+    { archivo: "logos/udistrital.png",   nombre: "Universidad Distrital Francisco José de Caldas" }
+  ]
+};
+</script>
+
+<style>
+:root{
+  --azul:#00629B; --azul-hondo:#004C78; --azul-claro:#E6F0F6; --linea:#C9DCE8; --pista:#8DB8D3;
+  --ambar:#F5A623; --ambar-claro:#FFF2DA;
+  --verde:#2E9E5B; --rojo:#B3261E;
+  --fondo:#F7F7F4; --blanco:#FFFFFF; --tinta:#1F2328; --tinta-2:#4A5561;
+  --titulos:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --texto:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--fondo);color:var(--tinta);font:400 1.0625rem/1.65 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:var(--azul);text-underline-offset:3px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--titulos);margin:0;line-height:1.15}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:6px}
+.envoltura{width:100%;max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.envoltura{padding:0 32px}}
+
+/* Barra superior */
+.barra{position:sticky;top:0;z-index:20;background:rgba(247,247,244,.94);border-bottom:1px solid var(--linea);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.barra__fila{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.marca{display:flex;align-items:center;gap:8px;font:800 1rem/1 var(--titulos);color:var(--azul);text-decoration:none}
+
+/* Botones */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid transparent;font:700 1rem/1.1 var(--titulos);text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s}
+.boton--azul{background:var(--azul);color:#fff}
+.boton--azul:hover{background:var(--azul-hondo)}
+.boton--borde{background:transparent;color:var(--azul);border-color:var(--azul)}
+.boton--borde:hover{background:var(--azul-claro)}
+.boton--ambar{background:var(--ambar);color:var(--tinta)}
+.boton--ambar:hover{background:#E8951A}
+.boton--claro{background:transparent;color:#fff;border-color:rgba(255,255,255,.85)}
+.boton--claro:hover{background:rgba(255,255,255,.12)}
+.boton--chico{min-height:40px;padding:8px 16px;font-size:.92rem}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+/* Portada */
+.portada{padding:36px 0 44px}
+.portada__rejilla{display:grid;gap:28px;align-items:center}
+@media (min-width:880px){.portada{padding:72px 0 72px}.portada__rejilla{grid-template-columns:1.05fr .95fr;gap:48px}}
+.antetitulo{display:inline-block;margin:0 0 16px;padding:6px 14px;border-radius:999px;background:var(--azul-claro);color:var(--azul);font:700 .95rem/1.3 var(--titulos)}
+.portada h1{font-size:clamp(2.9rem,12vw,5.2rem);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--azul);text-wrap:balance}
+.portada__texto{max-width:34em;margin:20px 0 0;font-size:1.15rem;color:var(--tinta-2)}
+.portada__organizan{max-width:40em;margin:22px 0 0;font-size:.92rem;color:var(--tinta-2)}
+.ilustracion{width:100%;max-width:540px;height:auto;margin:0 auto}
+
+/* Secciones */
+.seccion{padding:56px 0}
+@media (min-width:880px){.seccion{padding:80px 0}}
+.seccion--blanca{background:var(--blanco);border-block:1px solid var(--linea)}
+.pestana{display:inline-block;margin:0 0 20px;padding:10px 18px 9px;border-radius:12px 12px 12px 0;background:var(--azul);color:#fff;font-size:clamp(1.4rem,4.6vw,2rem);font-weight:800;letter-spacing:-.01em}
+.introduccion{max-width:40em;margin:0 0 30px;font-size:1.08rem;color:var(--tinta-2)}
+
+/* Recorrido de la donación */
+.recorrido{position:relative;max-width:760px;margin:0;padding:0;list-style:none}
+.recorrido::before{content:"";position:absolute;left:19px;top:21px;bottom:21px;width:4px;border-radius:2px;background:var(--pista)}
+.paso{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:16px;padding:0 0 28px}
+.paso:last-child{padding-bottom:0}
+.paso__nodo{position:relative;z-index:1;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--blanco);border:4px solid var(--azul);color:var(--azul);font:800 1rem/1 var(--titulos)}
+.paso__cabeza{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-top:8px}
+.paso h3{font-size:1.18rem;color:var(--tinta)}
+.paso p{max-width:36em;margin:6px 0 0;color:var(--tinta-2)}
+.estado{display:inline-block;padding:3px 11px;border-radius:999px;background:#ECEFF2;color:var(--tinta-2);font:700 .8rem/1.4 var(--titulos)}
+.paso--hecho .paso__nodo{background:var(--verde);border-color:var(--verde);color:#fff}
+.paso--hecho .estado{background:#E1F3E8;color:#1D6B40}
+.paso--en-curso .paso__nodo{background:var(--ambar);border-color:var(--ambar);color:var(--tinta);box-shadow:0 0 0 7px rgba(245,166,35,.28)}
+.paso--en-curso .estado{background:var(--ambar);color:var(--tinta)}
+
+/* El colegio */
+.colegio__nombre{margin:0;font:800 1.35rem/1.3 var(--titulos);color:var(--tinta)}
+.colegio__lugar{margin:2px 0 24px;color:var(--tinta-2)}
+.galeria{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:880px){.galeria{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.foto{min-width:0;margin:0}
+.foto--principal{grid-column:1/-1}
+.foto__marco{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:var(--azul-claro)}
+.foto--principal .foto__marco{aspect-ratio:16/9}
+@media (min-width:880px){.foto--principal .foto__marco{aspect-ratio:21/9}}
+.foto__marco img{width:100%;height:100%;object-fit:cover}
+.foto__marco--vacio{background:#F1F6F9;border:2px dashed #9DBFD4}
+.foto__vacio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;color:#3F6A85;font-size:.92rem;font-weight:600;text-align:center}
+.foto figcaption{margin-top:8px;font-size:.92rem;color:var(--tinta-2)}
+.privacidad{display:flex;gap:12px;align-items:flex-start;max-width:46em;margin:24px 0 0;padding:14px 16px;border-radius:12px;background:#EAF5EE;border:1px solid #C3E4CF;color:#1F5A38;font-size:.96rem}
+.privacidad svg{flex:none;margin-top:2px}
+
+/* Qué van a aprender */
+.niveles{display:grid;gap:16px}
+@media (min-width:820px){.niveles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.nivel{padding:22px;border-radius:14px;background:var(--blanco);border:1px solid var(--linea)}
+.seccion--blanca .nivel{background:var(--fondo)}
+.nivel__etiqueta{display:block;font:700 .92rem/1.3 var(--titulos);color:var(--azul)}
+.nivel h3{margin:6px 0 8px;font-size:1.2rem;color:var(--tinta)}
+.nivel p{margin:0;color:var(--tinta-2)}
+.nivel--final,.seccion--blanca .nivel--final{background:var(--ambar-claro);border-color:#F2CF8E}
+.nivel--final .nivel__etiqueta{color:#8A5300}
+
+/* Cómo donar */
+.subtitulo{margin:0 0 14px;font-size:1.25rem;color:var(--tinta)}
+.componentes{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 34px;padding:0;list-style:none}
+.componentes li{padding:9px 14px;border-radius:10px;background:var(--blanco);border:1px solid var(--linea);font-weight:600;line-height:1.3}
+.componentes small{display:block;font-size:.82rem;font-weight:400;color:var(--tinta-2)}
+.reglas{display:grid;gap:16px}
+@media (min-width:760px){.reglas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.regla{padding:22px;border-radius:14px;background:var(--blanco);border:1px solid var(--linea)}
+.regla h3{margin:0 0 14px;font-size:1.15rem;color:var(--tinta)}
+.lista{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.lista li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.lista svg{margin-top:3px}
+.recaudo{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;margin-top:16px;padding:22px;border-radius:14px;background:var(--ambar);color:var(--tinta)}
+.recaudo h3{margin:2px 0 10px;font-size:1.35rem;color:var(--tinta)}
+.recaudo dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0}
+.recaudo dt{font-weight:700}
+.recaudo dd{margin:0}
+
+/* Súmate */
+.sumate{padding:56px 0;background:var(--azul);color:#fff}
+@media (min-width:880px){.sumate{padding:80px 0}}
+.sumate .pestana{background:#fff;color:var(--azul)}
+.sumate .introduccion{color:#DCEAF3}
+.roles{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 0 30px;padding:0;list-style:none}
+@media (min-width:880px){.roles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.rol{padding:18px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28)}
+.rol svg{color:var(--ambar)}
+.rol h3{margin:10px 0 4px;font-size:1.02rem;color:#fff}
+.rol p{margin:0;font-size:.93rem;color:#DCEAF3}
+.sumate__contacto{margin:24px 0 0;color:#DCEAF3}
+.sumate__contacto a{color:#fff;font-weight:700}
+
+/* Pie */
+.pie{padding:40px 0 48px;background:var(--blanco);border-top:1px solid var(--linea)}
+.pie h2{margin:0 0 16px;font-size:1rem;font-weight:700;color:var(--azul)}
+.logos{display:flex;flex-wrap:wrap;align-items:center;gap:16px 36px}
+.logo img{width:auto;height:60px}
+.logo--texto{padding:12px 16px;border:1.5px dashed var(--linea);border-radius:10px;font-size:.95rem;font-weight:700;color:var(--tinta)}
+.pie__nota{margin:28px 0 0;font-size:.88rem;color:var(--tinta-2)}
+
+/* Aviso al copiar el enlace */
+.aviso{position:fixed;left:50%;bottom:20px;z-index:30;max-width:calc(100% - 32px);padding:12px 20px;border-radius:999px;background:var(--tinta);color:#fff;font-weight:600;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity .2s,transform .2s}
+.aviso--visible{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envoltura barra__fila">
+    <a class="marca" href="#inicio">
+      <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 30a14 14 0 0 1 28 0v12H18z" fill="#F5A623"/><rect x="14" y="40" width="36" height="6" rx="2" fill="#00629B"/><rect x="24" y="46" width="4" height="16" fill="#00629B"/><rect x="36" y="46" width="4" height="11" fill="#00629B"/></svg>
+      Del cajón al aula
+    </a>
+    <a class="boton boton--azul boton--chico" href="#donar">Cómo donar</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="portada">
+    <div class="envoltura portada__rejilla">
+      <div>
+        <p class="antetitulo">Campaña de donación</p>
+        <h1>Del cajón al aula</h1>
+        <p class="portada__texto">Los componentes electrónicos que ya no usas pueden enseñar electricidad a estudiantes de colegios públicos. Aquí ves qué hacemos con cada donación y cómo puedes ayudar.</p>
+        <div class="acciones">
+          <a class="boton boton--azul" href="#recorrido">Conoce el proyecto</a>
+          <a class="boton boton--borde" href="#sumate">Quiero sumarme</a>
+        </div>
+        <p class="portada__organizan">Una iniciativa de <span data-campo="grupo">[NOMBRE DEL GRUPO DE INVESTIGACIÓN]</span> y la Rama Estudiantil IEEE de la Universidad Distrital.</p>
+      </div>
+
+      <svg class="ilustracion" viewBox="0 0 480 250" role="img" aria-labelledby="ilu-titulo">
+        <title id="ilu-titulo">Componentes que salen de un cajón y viajan por una pista de circuito hasta un colegio</title>
+        <defs>
+          <radialGradient id="brillo">
+            <stop offset="0" stop-color="#F5A623" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#F5A623" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <line x1="12" y1="228" x2="468" y2="228" stroke="#C9DCE8" stroke-width="3" stroke-linecap="round"/>
+        <!-- Pistas del circuito -->
+        <path d="M168 206 H222 L250 178 H322 L348 204 H376" fill="none" stroke="#9CC3DA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="pista" d="M168 186 H214 L244 156 H330 L356 182 H376" fill="none" stroke="#00629B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#FFFFFF" stroke="#00629B" stroke-width="3">
+          <circle cx="214" cy="186" r="5.5"/><circle cx="244" cy="156" r="5.5"/><circle cx="330" cy="156" r="5.5"/><circle cx="356" cy="182" r="5.5"/>
+        </g>
+        <!-- Cajón: interior y componentes -->
+        <rect x="30" y="128" width="132" height="22" rx="4" fill="#9C6534"/>
+        <path d="M40 150 C46 110 86 106 98 148" fill="none" stroke="#2E9E5B" stroke-width="4" stroke-linecap="round"/>
+        <path d="M74 150 C86 102 132 104 146 148" fill="none" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+        <g transform="rotate(-8 57 131)">
+          <rect x="36" y="118" width="42" height="27" rx="3" fill="#1F5F8B"/>
+          <rect x="40" y="121" width="34" height="3.5" rx="1" fill="#D9E3EA"/>
+          <rect x="50" y="128" width="14" height="12" rx="1.5" fill="#13293D"/>
+        </g>
+        <g transform="rotate(16 104 124)">
+          <line x1="86" y1="124" x2="122" y2="124" stroke="#8A949E" stroke-width="2"/>
+          <rect x="94" y="118" width="20" height="12" rx="6" fill="#E9C9A0"/>
+          <rect x="98" y="118" width="2.6" height="12" fill="#8B4513"/>
+          <rect x="103" y="118" width="2.6" height="12" fill="#1F2328"/>
+          <rect x="108" y="118" width="2.6" height="12" fill="#D64545"/>
+        </g>
+        <line x1="133" y1="131" x2="133" y2="150" stroke="#8A949E" stroke-width="2"/>
+        <line x1="141" y1="131" x2="141" y2="146" stroke="#8A949E" stroke-width="2"/>
+        <path d="M128 120 a9 9 0 0 1 18 0 v8 h-18 z" fill="#D64545"/>
+        <rect x="126" y="127" width="22" height="4" rx="1" fill="#B83A3A"/>
+        <!-- Cajón: frente -->
+        <rect x="24" y="146" width="144" height="80" rx="10" fill="#D9A066"/>
+        <rect x="24" y="146" width="144" height="9" rx="4.5" fill="#C48A4F"/>
+        <rect x="72" y="181" width="48" height="11" rx="5.5" fill="#8A5A2B"/>
+        <!-- Colegio -->
+        <circle id="halo" cx="441" cy="156" r="36" fill="url(#brillo)" opacity="0">
+          <animate attributeName="opacity" to="1" begin="viaje.end" dur="0.8s" fill="freeze"/>
+        </circle>
+        <polygon points="366,134 420,94 474,134" fill="#00629B"/>
+        <rect x="376" y="132" width="88" height="96" rx="3" fill="#FFFFFF" stroke="#00629B" stroke-width="4"/>
+        <rect x="388" y="146" width="22" height="20" rx="3" fill="#E6F0F6" stroke="#00629B" stroke-width="2.5"/>
+        <rect id="ventana" x="430" y="146" width="22" height="20" rx="3" fill="#E6F0F6" stroke="#00629B" stroke-width="2.5">
+          <animate attributeName="fill" to="#F5A623" begin="viaje.end" dur="0.5s" fill="freeze"/>
+        </rect>
+        <rect x="407" y="186" width="26" height="42" rx="3" fill="#00629B"/>
+        <line x1="420" y1="94" x2="420" y2="68" stroke="#00629B" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="420,68 446,75 420,82" fill="#F5A623"/>
+        <!-- Un componente viaja del cajón al colegio (una sola vez) -->
+        <circle id="viajero" r="6.5" fill="#F5A623" stroke="#FFFFFF" stroke-width="2.5" opacity="0">
+          <set attributeName="opacity" to="1" begin="0s" fill="freeze"/>
+          <animateMotion id="viaje" begin="0s" dur="3s" fill="freeze" calcMode="spline" keyPoints="0;0;1" keyTimes="0;0.2;1" keySplines="0 0 1 1;0.45 0 0.35 1"><mpath href="#pista"/></animateMotion>
+          <animate attributeName="opacity" to="0" begin="viaje.end" dur="0.4s" fill="freeze"/>
+        </circle>
+      </svg>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" id="recorrido" aria-labelledby="t-recorrido">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-recorrido">Qué pasa con tu donación</h2>
+      <p class="introduccion">Ningún componente se queda guardado. Este es el recorrido completo y la etapa en la que vamos.</p>
+      <ol class="recorrido">
+        <li class="paso" data-paso="recibir">
+          <span class="paso__nodo" aria-hidden="true">1</span>
+          <div>
+            <div class="paso__cabeza"><h3>Recibimos tu donación</h3><span class="estado">Próximamente</span></div>
+            <p>Llevas tus componentes al punto de recaudo de la universidad.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="revisar">
+          <span class="paso__nodo" aria-hidden="true">2</span>
+          <div>
+            <div class="paso__cabeza"><h3>Revisamos cada componente</h3><span class="estado">Próximamente</span></div>
+            <p>Lo probamos y lo clasificamos. Solo lo que funciona entra a los kits.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="armar">
+          <span class="paso__nodo" aria-hidden="true">3</span>
+          <div>
+            <div class="paso__cabeza"><h3>Armamos kits por equipos</h3><span class="estado">Próximamente</span></div>
+            <p>Cada kit sirve a un equipo de 3 o 4 estudiantes y va en una caja organizadora con la lista de lo que contiene.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="guias">
+          <span class="paso__nodo" aria-hidden="true">4</span>
+          <div>
+            <div class="paso__cabeza"><h3>Escribimos las guías</h3><span class="estado">Próximamente</span></div>
+            <p>Prácticas paso a paso, a baja tensión (con pilas o fuentes de 5 a 12 V) y sin soldar ni cortar patas, para que los componentes duren varios años.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="docente">
+          <span class="paso__nodo" aria-hidden="true">5</span>
+          <div>
+            <div class="paso__cabeza"><h3>Formamos a un docente del colegio</h3><span class="estado">Próximamente</span></div>
+            <p>Así las prácticas no dependen de nosotros y siguen cada año con nuevos estudiantes.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="talleres">
+          <span class="paso__nodo" aria-hidden="true">6</span>
+          <div>
+            <div class="paso__cabeza"><h3>Llevamos los talleres al aula</h3><span class="estado">Próximamente</span></div>
+            <p>Los estudiantes aprenden con los kits, acompañados por su docente.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="entregar">
+          <span class="paso__nodo" aria-hidden="true">7</span>
+          <div>
+            <div class="paso__cabeza"><h3>Los kits se quedan en el colegio</h3><span class="estado">Próximamente</span></div>
+            <p>Los entregamos con inventario y un acta firmada por el rector, bajo la custodia de un docente. Lo que se gaste, como LEDs, resistencias o pilas, lo reponemos con nuevas donaciones.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion" id="colegio" aria-labelledby="t-colegio">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-colegio">El colegio</h2>
+      <p class="introduccion">Este es el colegio público donde se quedarán los kits.</p>
+      <p class="colegio__nombre" data-campo="colegio">[NOMBRE DEL COLEGIO]</p>
+      <p class="colegio__lugar" data-campo="municipio">[MUNICIPIO]</p>
+      <div class="galeria" id="galeria"></div>
+      <p class="privacidad">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Cuidamos a los estudiantes: sus caras se difuminan antes de publicar cada foto, y solo publicamos fotos autorizadas por sus familias y por el colegio.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" id="aprender" aria-labelledby="t-aprender">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-aprender">Qué van a aprender</h2>
+      <p class="introduccion">Las guías van de lo básico a proyectos con sensores y placas programables.</p>
+      <div class="niveles">
+        <article class="nivel">
+          <span class="nivel__etiqueta">Nivel 1</span>
+          <h3>Electricidad básica</h3>
+          <p>Circuitos con LEDs, resistencias y motores. Qué son el voltaje y la corriente, y cómo se miden con un multímetro.</p>
+        </article>
+        <article class="nivel">
+          <span class="nivel__etiqueta">Nivel 2</span>
+          <h3>Sensores y placas programables</h3>
+          <p>Medir temperatura, humedad o distancia, y controlar luces y motores con Arduino o ESP32.</p>
+        </article>
+        <article class="nivel nivel--final">
+          <span class="nivel__etiqueta">Proyecto final</span>
+          <h3>Una solución para su colegio</h3>
+          <p>Cada equipo construye un prototipo que resuelva un problema real; por ejemplo, regar la huerta escolar de forma automática.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="donar" aria-labelledby="t-donar">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-donar">Cómo donar</h2>
+
+      <h3 class="subtitulo">Qué recibimos</h3>
+      <ul class="componentes">
+        <li>LEDs</li>
+        <li>Resistencias</li>
+        <li>Diodos</li>
+        <li>Motores DC</li>
+        <li>Pilas y baterías recargables</li>
+        <li>Protoboards</li>
+        <li>Cables y jumpers</li>
+        <li>Placas de desarrollo <small>Arduino, ESP32…</small></li>
+        <li>Módulos <small>puente H, relés…</small></li>
+        <li>Sensores</li>
+      </ul>
+
+      <div class="reglas">
+        <div class="regla">
+          <h3>Antes de donar</h3>
+          <ul class="lista">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Que funcione y esté en buen estado.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Que tenga sus patas o terminales completos.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Placas con su cable USB, si lo tienes.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pilas y baterías sin golpes, hinchazón ni fugas, con los terminales cubiertos con cinta aislante.</span></li>
+          </ul>
+        </div>
+        <div class="regla">
+          <h3>No recibimos</h3>
+          <ul class="lista">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Componentes quemados o dañados.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Pilas no recargables usadas.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Celulares, computadores ni electrodomésticos.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="recaudo">
+        <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="#1F2328"/></svg>
+        <div>
+          <h3>Punto de recaudo</h3>
+          <dl>
+            <dt>Dónde</dt><dd data-campo="lugar">[SEDE, EDIFICIO Y SALÓN]</dd>
+            <dt>Cuándo</dt><dd data-campo="fechas">[FECHAS]</dd>
+            <dt>Horario</dt><dd data-campo="horario">[HORARIO]</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sumate" id="sumate" aria-labelledby="t-sumate">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-sumate">¿No tienes qué donar? Dona tu tiempo</h2>
+      <p class="introduccion">Puedes ayudar en cualquiera de estas tareas, según el tiempo que tengas.</p>
+      <ul class="roles">
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <h3>Diseñar guías</h3>
+          <p>Escribir e ilustrar prácticas paso a paso.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15 15 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Revisar componentes</h3>
+          <p>Probar y clasificar lo que llega.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8 12 4l8.5 4v8.5L12 20.5l-8.5-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 8 12 12l8.5-4M12 12v8.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <h3>Armar kits</h3>
+          <p>Organizar las cajas y su inventario.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="18" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.4 10.8 7.2-3.6M8.4 13.2l7.2 3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <h3>Compartir la campaña</h3>
+          <p>Contarle a tu curso o a tu grupo de laboratorio.</p>
+        </li>
+      </ul>
+      <div class="acciones">
+        <a class="boton boton--ambar" id="btn-sumarme" href="mailto:mfhernandezl@udistrital.edu.co">Quiero sumarme</a>
+        <button class="boton boton--claro" id="btn-compartir" type="button">Compartir la campaña</button>
+      </div>
+      <p class="sumate__contacto">¿Tienes preguntas? Escríbenos a <a data-correo href="mailto:mfhernandezl@udistrital.edu.co">mfhernandezl@udistrital.edu.co</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <h2>Organizan</h2>
+    <div class="logos" id="logos"></div>
+    <p class="pie__nota">Del cajón al aula es una campaña de la comunidad de la Universidad Distrital Francisco José de Caldas, en Bogotá.</p>
+  </div>
+</footer>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const C = (typeof CONFIG !== 'undefined' && CONFIG) || {};
+
+  // Textos que vienen de CONFIG
+  document.querySelectorAll('[data-campo]').forEach(el => {
+    const valor = C[el.dataset.campo];
+    if (valor) el.textContent = valor;
+  });
+
+  // Correo de contacto
+  if (C.correo) {
+    document.querySelectorAll('[data-correo]').forEach(a => {
+      a.href = 'mailto:' + C.correo;
+      a.textContent = C.correo;
+    });
+  }
+
+  // Botón «Quiero sumarme»: formulario si existe; si no, correo
+  const sumarme = document.getElementById('btn-sumarme');
+  if (C.formulario) {
+    sumarme.href = C.formulario;
+    sumarme.target = '_blank';
+    sumarme.rel = 'noopener';
+  } else if (C.correo) {
+    sumarme.href = 'mailto:' + C.correo + '?subject=' + encodeURIComponent('Quiero sumarme a Del cajón al aula');
+  }
+
+  // Avance de cada paso
+  const ETIQUETAS = { 'hecho': 'Hecho', 'en-curso': 'En curso', 'proximamente': 'Próximamente' };
+  document.querySelectorAll('[data-paso]').forEach(paso => {
+    let estado = (C.avance || {})[paso.dataset.paso];
+    if (!ETIQUETAS[estado]) estado = 'proximamente';
+    paso.classList.add('paso--' + estado);
+    paso.querySelector('.estado').textContent = ETIQUETAS[estado];
+  });
+
+  // Galería: si una foto aún no existe, se muestra un recuadro vacío
+  const CAMARA = '<svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-2.5h6L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+  const galeria = document.getElementById('galeria');
+  (C.fotos || []).forEach((foto, i) => {
+    const figura = document.createElement('figure');
+    figura.className = 'foto' + (i === 0 ? ' foto--principal' : '');
+    const marco = document.createElement('div');
+    marco.className = 'foto__marco';
+    const img = new Image();
+    img.alt = foto.texto || '';
+    img.decoding = 'async';
+    img.loading = 'lazy';
+    img.addEventListener('error', () => {
+      img.remove();
+      marco.classList.add('foto__marco--vacio');
+      marco.innerHTML = '<span class="foto__vacio">' + CAMARA + '<span>Foto próximamente</span></span>';
+    });
+    img.src = foto.archivo;
+    marco.appendChild(img);
+    figura.appendChild(marco);
+    if (foto.texto) {
+      const pie = document.createElement('figcaption');
+      pie.textContent = foto.texto;
+      figura.appendChild(pie);
+    }
+    galeria.appendChild(figura);
+  });
+
+  // Logos: si falta el archivo, se muestra el nombre
+  const logos = document.getElementById('logos');
+  (C.logos || []).forEach(logo => {
+    const nombre = logo.nombre || C.grupo || '';
+    const item = document.createElement('div');
+    item.className = 'logo';
+    const img = new Image();
+    img.alt = nombre;
+    img.addEventListener('error', () => {
+      img.remove();
+      item.classList.add('logo--texto');
+      item.textContent = nombre;
+    });
+    img.src = logo.archivo;
+    item.appendChild(img);
+    logos.appendChild(item);
+  });
+
+  // Compartir la campaña
+  const aviso = document.getElementById('aviso');
+  let temporizador;
+  const avisar = texto => {
+    aviso.textContent = texto;
+    aviso.classList.add('aviso--visible');
+    clearTimeout(temporizador);
+    temporizador = setTimeout(() => aviso.classList.remove('aviso--visible'), 3000);
+  };
+  document.getElementById('btn-compartir').addEventListener('click', async () => {
+    const url = location.href.split('#')[0];
+    const datos = {
+      title: 'Del cajón al aula',
+      text: 'Dona los componentes electrónicos que ya no usas: se convierten en kits para que estudiantes de colegios públicos aprendan electricidad.',
+      url
+    };
+    if (navigator.share) {
+      try { await navigator.share(datos); } catch (e) { /* el usuario canceló */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      avisar('Enlace copiado');
+    } catch (e) {
+      avisar(url);
+    }
+  });
+
+  // Sin animación para quien la tiene desactivada en su dispositivo
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const svg = document.querySelector('.ilustracion');
+    svg.querySelectorAll('animate, animateMotion, set').forEach(a => a.remove());
+    document.getElementById('viajero').remove();
+    document.getElementById('ventana').setAttribute('fill', '#F5A623');
+    document.getElementById('halo').setAttribute('opacity', '1');
+  }
+})();
+</script>
+</body>
+</html>
