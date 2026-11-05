@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Difuminar caras | Del cajón al aula</title>
+<meta name="theme-color" content="#00629B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18 30a14 14 0 0 1 28 0v12H18z' fill='%23F5A623'/%3E%3Crect x='14' y='40' width='36' height='6' rx='2' fill='%2300629B'/%3E%3Crect x='24' y='46' width='4' height='16' fill='%2300629B'/%3E%3Crect x='36' y='46' width='4' height='11' fill='%2300629B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --azul:#00629B; --azul-hondo:#004C78; --azul-claro:#E6F0F6; --linea:#C9DCE8;
+  --ambar:#F5A623; --ambar-claro:#FFF2DA;
+  --fondo:#F7F7F4; --blanco:#FFFFFF; --tinta:#1F2328; --tinta-2:#4A5561;
+  --titulos:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --texto:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--tinta);font:400 1.0625rem/1.6 var(--texto);-webkit-font-smoothing:antialiased}
+h1,h2{font-family:var(--titulos);line-height:1.15;margin:0}
+p{margin:0 0 1em}
+a{color:var(--azul);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:6px}
+.envoltura{width:100%;max-width:900px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.envoltura{padding:0 32px}}
+.barra{background:var(--blanco);border-bottom:1px solid var(--linea)}
+.barra__fila{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.marca{font:800 1rem/1 var(--titulos);color:var(--azul)}
+main.envoltura{padding-top:32px;padding-bottom:56px}
+.pestana{display:inline-block;margin:0 0 18px;padding:10px 18px 9px;border-radius:12px 12px 12px 0;background:var(--azul);color:#fff;font-size:clamp(1.4rem,5vw,2rem);font-weight:800}
+.introduccion{max-width:40em;color:var(--tinta-2)}
+.guia{max-width:40em;margin:0 0 24px;padding-left:1.3em;color:var(--tinta)}
+.guia li{margin-bottom:6px}
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid transparent;font:700 1rem/1.1 var(--titulos);text-decoration:none;cursor:pointer}
+.boton[disabled]{opacity:.45;cursor:not-allowed}
+.boton--azul{background:var(--azul);color:#fff}
+.boton--azul:hover{background:var(--azul-hondo)}
+.boton--borde{background:var(--blanco);color:var(--azul);border-color:var(--azul)}
+.boton--ambar{background:var(--ambar);color:var(--tinta)}
+.selector:focus-within{outline:3px solid var(--ambar);outline-offset:3px}
+.oculto{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);border:0}
+.estado{margin:14px 0 0;font-weight:600;color:var(--tinta-2)}
+.lienzo{margin-top:18px;overflow:hidden;border:1px solid var(--linea);border-radius:14px;background:var(--blanco)}
+.lienzo canvas{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+.lienzo--real{overflow:auto;max-height:78vh}
+.lienzo--real canvas{width:auto;max-width:none;touch-action:auto;cursor:default}
+.controles{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.confirmar{display:flex;gap:12px;align-items:flex-start;margin:22px 0 14px;padding:14px 16px;border-radius:12px;background:var(--ambar-claro);border:1px solid #F2CF8E}
+.confirmar input{width:22px;height:22px;margin:2px 0 0;flex:none;accent-color:var(--azul)}
+.nota{margin-top:12px;font-size:.92rem;color:var(--tinta-2)}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envoltura barra__fila">
+    <span class="marca">Del cajón al aula</span>
+    <a href="./">Volver a la página</a>
+  </div>
+</header>
+
+<main class="envoltura">
+  <h1 class="pestana">Difuminar caras antes de publicar</h1>
+  <p class="introduccion">Usa esta herramienta con cada foto de estudiantes antes de subirla. El difuminado queda dentro del archivo, así que nadie puede recuperar las caras. La foto no sale de tu dispositivo: todo ocurre en este navegador.</p>
+  <ol class="guia">
+    <li>Elige una foto.</li>
+    <li>Toca cada cara o arrastra sobre ella. Cubre la cabeza completa, con pelo y orejas.</li>
+    <li>Mírala a tamaño real: que no se reconozca a nadie ni se vean nombres en escarapelas, cuadernos o uniformes.</li>
+    <li>Descarga la foto lista y súbela a la carpeta <code>fotos/</code> del repositorio. Nunca subas la original.</li>
+  </ol>
+
+  <label class="boton boton--azul selector">
+    <input class="oculto" type="file" id="archivo" accept="image/*">
+    Elegir foto
+  </label>
+  <p class="estado" id="estado" role="status" aria-live="polite">Todavía no has elegido una foto.</p>
+
+  <div id="editor" hidden>
+    <div class="lienzo" id="marco">
+      <canvas id="lienzo" aria-label="Foto. Toca o arrastra sobre cada cara para difuminarla."></canvas>
+    </div>
+    <div class="controles">
+      <button class="boton boton--borde" type="button" id="deshacer" disabled>Deshacer</button>
+      <button class="boton boton--borde" type="button" id="quitar" disabled>Quitar todo</button>
+      <button class="boton boton--borde" type="button" id="real" aria-pressed="false">Ver a tamaño real</button>
+    </div>
+    <label class="confirmar">
+      <input type="checkbox" id="revisado">
+      <span>Revisé la foto a tamaño real: no se reconoce a ningún estudiante ni se ven nombres.</span>
+    </label>
+    <button class="boton boton--ambar" type="button" id="descargar" disabled>Descargar foto lista</button>
+    <p class="nota">Se descarga en JPG, con 1600 píxeles como máximo en su lado mayor y sin la ubicación GPS ni otros datos de la cámara.</p>
+  </div>
+</main>
+
+<script>
+(() => {
+  const MAXIMO = 1600;          // píxeles del lado mayor de la foto final
+  const DETALLE = 6;            // píxeles que conserva cada zona en su lado mayor
+  const $ = id => document.getElementById(id);
+  const archivo = $('archivo'), lienzo = $('lienzo'), marco = $('marco'), editor = $('editor'), estado = $('estado');
+  const bDeshacer = $('deshacer'), bQuitar = $('quitar'), bReal = $('real'), bDescargar = $('descargar'), revisado = $('revisado');
+  const ctx = lienzo.getContext('2d');
+  const chico = document.createElement('canvas');
+  const cctx = chico.getContext('2d');
+  let base = null, zonas = [], arrastre = null, nombre = 'foto', modoReal = false;
+
+  archivo.addEventListener('change', () => {
+    const f = archivo.files && archivo.files[0];
+    archivo.value = '';
+    if (!f) return;
+    nombre = (f.name || 'foto').replace(/\.[^.]+$/, '') || 'foto';
+    const url = URL.createObjectURL(f);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const escala = Math.min(1, MAXIMO / Math.max(img.naturalWidth, img.naturalHeight));
+      base = document.createElement('canvas');
+      base.width = Math.max(1, Math.round(img.naturalWidth * escala));
+      base.height = Math.max(1, Math.round(img.naturalHeight * escala));
+      const b = base.getContext('2d');
+      b.fillStyle = '#ffffff';
+      b.fillRect(0, 0, base.width, base.height);
+      b.imageSmoothingQuality = 'high';
+      b.drawImage(img, 0, 0, base.width, base.height);
+      lienzo.width = base.width;
+      lienzo.height = base.height;
+      zonas = [];
+      revisado.checked = false;
+      ponerModoReal(false);
+      editor.hidden = false;
+      dibujar();
+      actualizar();
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      estado.textContent = 'No se pudo abrir ese archivo. Usa una foto JPG o PNG; si es HEIC (iPhone), compártela o guárdala como JPG.';
+    };
+    img.src = url;
+  });
+
+  const caja = z => ({
+    x: Math.min(z.x0, z.x1), y: Math.min(z.y0, z.y1),
+    w: Math.abs(z.x1 - z.x0), h: Math.abs(z.y1 - z.y0)
+  });
+
+  // Reduce la zona a unos pocos píxeles y la vuelve a ampliar dentro de una elipse.
+  // El detalle de la cara se pierde en el archivo y no se puede reconstruir.
+  function difuminar(z) {
+    const { x, y, w, h } = caja(z);
+    const sx = Math.max(0, x), sy = Math.max(0, y);
+    const sw = Math.min(lienzo.width, x + w) - sx;
+    const sh = Math.min(lienzo.height, y + h) - sy;
+    if (sw < 1 || sh < 1) return;
+    const k = DETALLE / Math.max(sw, sh);
+    const cw = Math.max(2, Math.round(sw * k)), ch = Math.max(2, Math.round(sh * k));
+    chico.width = cw;
+    chico.height = ch;
+    cctx.imageSmoothingEnabled = true;
+    cctx.imageSmoothingQuality = 'high';
+    cctx.drawImage(base, sx, sy, sw, sh, 0, 0, cw, ch);
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(x + w / 2, y + h / 2, w / 2, h / 2, 0, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(chico, 0, 0, cw, ch, sx, sy, sw, sh);
+    ctx.restore();
+  }
+
+  function dibujar(vista) {
+    if (!base) return;
+    ctx.drawImage(base, 0, 0);
+    zonas.forEach(difuminar);
+    if (vista) {
+      const { x, y, w, h } = caja(vista);
+      const g = Math.max(2, lienzo.width / 300);
+      ctx.save();
+      ctx.beginPath();
+      ctx.ellipse(x + w / 2, y + h / 2, Math.max(w / 2, 1), Math.max(h / 2, 1), 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(245,166,35,.25)';
+      ctx.fill();
+      ctx.lineWidth = g;
+      ctx.setLineDash([g * 4, g * 3]);
+      ctx.strokeStyle = '#F5A623';
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  const punto = e => {
+    const r = lienzo.getBoundingClientRect();
+    return {
+      x: Math.max(0, Math.min(lienzo.width, (e.clientX - r.left) * lienzo.width / r.width)),
+      y: Math.max(0, Math.min(lienzo.height, (e.clientY - r.top) * lienzo.height / r.height))
+    };
+  };
+
+  lienzo.addEventListener('pointerdown', e => {
+    if (!base || modoReal) return;
+    e.preventDefault();
+    lienzo.setPointerCapture(e.pointerId);
+    const p = punto(e);
+    arrastre = { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
+  });
+  lienzo.addEventListener('pointermove', e => {
+    if (!arrastre) return;
+    const p = punto(e);
+    arrastre.x1 = p.x;
+    arrastre.y1 = p.y;
+    dibujar(arrastre);
+  });
+  lienzo.addEventListener('pointerup', () => {
+    if (!arrastre) return;
+    let z = arrastre;
+    arrastre = null;
+    const { w, h } = caja(z);
+    const umbral = Math.max(8, lienzo.width / 100);
+    if (w < umbral && h < umbral) {
+      // Un toque crea un círculo de tamaño estándar centrado en ese punto
+      const r = Math.min(lienzo.width, lienzo.height) * 0.06;
+      z = { x0: z.x0 - r, y0: z.y0 - r, x1: z.x0 + r, y1: z.y0 + r };
+    }
+    zonas.push(z);
+    revisado.checked = false;
+    dibujar();
+    actualizar();
+  });
+  lienzo.addEventListener('pointercancel', () => { arrastre = null; dibujar(); });
+
+  function ponerModoReal(activo) {
+    modoReal = activo;
+    marco.classList.toggle('lienzo--real', activo);
+    bReal.textContent = activo ? 'Volver a editar' : 'Ver a tamaño real';
+    bReal.setAttribute('aria-pressed', String(activo));
+  }
+
+  function actualizar() {
+    const n = zonas.length;
+    bDeshacer.disabled = n === 0;
+    bQuitar.disabled = n === 0;
+    bDescargar.disabled = !base || !revisado.checked;
+    if (base) {
+      estado.textContent = n === 0
+        ? 'Foto cargada. Toca o arrastra sobre cada cara.'
+        : (n === 1 ? '1 zona difuminada.' : n + ' zonas difuminadas.');
+    }
+  }
+
+  bDeshacer.addEventListener('click', () => { zonas.pop(); revisado.checked = false; dibujar(); actualizar(); });
+  bQuitar.addEventListener('click', () => { zonas = []; revisado.checked = false; dibujar(); actualizar(); });
+  bReal.addEventListener('click', () => ponerModoReal(!modoReal));
+  revisado.addEventListener('change', actualizar);
+
+  bDescargar.addEventListener('click', () => {
+    dibujar();
+    lienzo.toBlob(blob => {
+      if (!blob) {
+        estado.textContent = 'No se pudo generar la foto. Inténtalo de nuevo.';
+        return;
+      }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = nombre + '-difuminada.jpg';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+      estado.textContent = 'Listo: se descargó «' + a.download + '». Esa es la que subes a la carpeta fotos/.';
+    }, 'image/jpeg', 0.86);
+  });
+})();
+</script>
+</body>
+</html>

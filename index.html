@@ -9,6 +9,14 @@
 <meta property="og:title" content="Del cajón al aula">
 <meta property="og:description" content="Dona los componentes electrónicos que ya no usas. Los convertimos en kits para que estudiantes de un colegio en Rivera, Huila, aprendan electricidad.">
 <meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://manuherloie.github.io/Del-Cajon-al-Aula/">
+<meta property="og:site_name" content="Del cajón al aula">
+<meta property="og:image" content="https://manuherloie.github.io/Del-Cajon-al-Aula/ilustraciones/compartir.jpg?v=20261104">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Del cajón al aula: componentes que pasan de un cajón a las manos de dos estudiantes">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manuherloie.github.io/Del-Cajon-al-Aula/">
 <meta name="theme-color" content="#00629B">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18 30a14 14 0 0 1 28 0v12H18z' fill='%23F5A623'/%3E%3Crect x='14' y='40' width='36' height='6' rx='2' fill='%2300629B'/%3E%3Crect x='24' y='46' width='4' height='16' fill='%2300629B'/%3E%3Crect x='36' y='46' width='4' height='11' fill='%2300629B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +29,10 @@
    Respeta las comillas y las comas al final de cada línea.
    ===================================================================== */
 var CONFIG = {
+  // Si cambias una foto o una ilustración sin cambiarle el nombre, sube este
+  // número (por ejemplo, la fecha del día) para que todos vean la nueva.
+  version: "20261104",
+
   // Correo de contacto. Escríbelo entre las comillas cuando lo tengas,
   // por ejemplo: correo: "nombre@ejemplo.com",
   // Mientras esté vacío, la página dice que pronto se publicará.
@@ -229,10 +241,10 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
   .sumate__imagen{align-self:center;max-width:none;aspect-ratio:1/1;margin:0}
 }
 .roles{grid-area:roles;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 0 30px;padding:0;list-style:none}
-.rol{padding:18px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28)}
+.rol{padding:18px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28)}
 .rol svg{color:var(--ambar)}
 .rol h3{margin:10px 0 4px;font-size:1.02rem;color:#fff}
-.rol p{margin:0;font-size:.93rem;color:#DCEAF3}
+.rol p{margin:0;font-size:.93rem;color:#EEF5FA}
 .sumate__contacto{margin:24px 0 0;color:#DCEAF3}
 .sumate__contacto a{color:#fff;font-weight:700}
 
@@ -288,10 +300,10 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
           </circle>
         </svg>
         <figure class="trayecto__tarjeta trayecto__cajon">
-          <img src="ilustraciones/cajon.webp" width="520" height="489" alt="Cajón lleno de componentes electrónicos" decoding="async" fetchpriority="high">
+          <img src="ilustraciones/cajon.webp?v=20261104" width="520" height="489" alt="Cajón lleno de componentes electrónicos" decoding="async" fetchpriority="high">
         </figure>
         <figure class="trayecto__tarjeta trayecto__aula">
-          <img src="ilustraciones/aula.webp" width="760" height="726" alt="Una niña y un niño encienden un LED en una protoboard" decoding="async" fetchpriority="high">
+          <img src="ilustraciones/aula.webp?v=20261104" width="760" height="726" alt="Una niña y un niño encienden un LED en una protoboard" decoding="async" fetchpriority="high">
         </figure>
       </div>
       <div class="portada__pie">
@@ -316,7 +328,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
       <p class="colegio__texto">Es un colegio privado pequeño y no tiene cómo comprar materiales para enseñar electrónica. Los kits se quedarán aquí para que sus estudiantes aprendan electricidad con ellos año tras año.</p>
       <div class="fotos" id="fotos" hidden>
         <p class="galeria__pista"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Desliza para ver todas las fotos</p>
-        <div class="galeria" id="galeria"></div>
+        <div class="galeria" id="galeria" tabindex="0" role="region" aria-label="Fotos del colegio"></div>
         <p class="privacidad">
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>Cuidamos a los estudiantes: sus caras se difuminan antes de publicar cada foto, y solo publicamos fotos autorizadas por sus familias y por el colegio.</span>
@@ -389,7 +401,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
       <p class="introduccion">La idea es que los niños tengan, desde pequeños, conocimientos básicos de electrónica y la oportunidad de interesarse por ella. Las guías son para todo el colegio y avanzan en tres etapas.</p>
       <div class="niveles">
         <article class="nivel">
-          <div class="nivel__imagen"><img src="ilustraciones/etapa-1.webp" width="800" height="800" alt="Una niña observa un tomacorriente con una señal de peligro mientras un niño deposita pilas usadas en un recipiente especial" loading="lazy" decoding="async"></div>
+          <div class="nivel__imagen"><img src="ilustraciones/etapa-1.webp?v=20261104" width="800" height="800" alt="Una niña observa un tomacorriente con una señal de peligro mientras un niño deposita pilas usadas en un recipiente especial" loading="lazy" decoding="async"></div>
           <div class="nivel__cuerpo">
             <span class="nivel__etiqueta">Etapa 1</span>
             <h3>Usar la electricidad con cuidado</h3>
@@ -397,7 +409,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
           </div>
         </article>
         <article class="nivel">
-          <div class="nivel__imagen"><img src="ilustraciones/etapa-2.webp" width="800" height="800" alt="Una niña observa con una lupa un LED y una resistencia en una protoboard" loading="lazy" decoding="async"></div>
+          <div class="nivel__imagen"><img src="ilustraciones/etapa-2.webp?v=20261104" width="800" height="800" alt="Una niña observa con una lupa un LED y una resistencia en una protoboard" loading="lazy" decoding="async"></div>
           <div class="nivel__cuerpo">
             <span class="nivel__etiqueta">Etapa 2</span>
             <h3>Conocer cada componente</h3>
@@ -405,7 +417,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
           </div>
         </article>
         <article class="nivel nivel--final">
-          <div class="nivel__imagen"><img src="ilustraciones/etapa-3.webp" width="800" height="800" alt="Dos niños piensan cómo encender un LED con un pulsador en una protoboard" loading="lazy" decoding="async"></div>
+          <div class="nivel__imagen"><img src="ilustraciones/etapa-3.webp?v=20261104" width="800" height="800" alt="Dos niños piensan cómo encender un LED con un pulsador en una protoboard" loading="lazy" decoding="async"></div>
           <div class="nivel__cuerpo">
             <span class="nivel__etiqueta">Etapa 3</span>
             <h3>Desarrollar la lógica</h3>
@@ -422,16 +434,16 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
 
       <h3 class="subtitulo">Qué recibimos</h3>
       <ul class="componentes">
-        <li><img src="ilustraciones/icono-leds.webp" width="357" height="420" alt="" loading="lazy" decoding="async"><span>LEDs</span></li>
-        <li><img src="ilustraciones/icono-resistencias.webp" width="420" height="242" alt="" loading="lazy" decoding="async"><span>Resistencias</span></li>
-        <li><img src="ilustraciones/icono-diodos.webp" width="420" height="406" alt="" loading="lazy" decoding="async"><span>Diodos</span></li>
-        <li><img src="ilustraciones/icono-motores.webp" width="420" height="368" alt="" loading="lazy" decoding="async"><span>Motores DC</span></li>
-        <li><img src="ilustraciones/icono-pilas.webp" width="420" height="342" alt="" loading="lazy" decoding="async"><span>Pilas y baterías recargables</span></li>
-        <li><img src="ilustraciones/icono-protoboards.webp" width="420" height="347" alt="" loading="lazy" decoding="async"><span>Protoboards</span></li>
-        <li><img src="ilustraciones/icono-cables.webp" width="420" height="374" alt="" loading="lazy" decoding="async"><span>Cables y jumpers</span></li>
-        <li><img src="ilustraciones/icono-placas.webp" width="420" height="358" alt="" loading="lazy" decoding="async"><span>Placas de desarrollo <small>Arduino, ESP32…</small></span></li>
-        <li><img src="ilustraciones/icono-modulos.webp" width="409" height="420" alt="" loading="lazy" decoding="async"><span>Módulos <small>puente H, relés…</small></span></li>
-        <li><img src="ilustraciones/icono-sensores.webp" width="420" height="259" alt="" loading="lazy" decoding="async"><span>Sensores</span></li>
+        <li><img src="ilustraciones/icono-leds.webp?v=20261104" width="357" height="420" alt="" loading="lazy" decoding="async"><span>LEDs</span></li>
+        <li><img src="ilustraciones/icono-resistencias.webp?v=20261104" width="420" height="242" alt="" loading="lazy" decoding="async"><span>Resistencias</span></li>
+        <li><img src="ilustraciones/icono-diodos.webp?v=20261104" width="420" height="406" alt="" loading="lazy" decoding="async"><span>Diodos</span></li>
+        <li><img src="ilustraciones/icono-motores.webp?v=20261104" width="420" height="368" alt="" loading="lazy" decoding="async"><span>Motores DC</span></li>
+        <li><img src="ilustraciones/icono-pilas.webp?v=20261104" width="420" height="342" alt="" loading="lazy" decoding="async"><span>Pilas y baterías recargables</span></li>
+        <li><img src="ilustraciones/icono-protoboards.webp?v=20261104" width="420" height="347" alt="" loading="lazy" decoding="async"><span>Protoboards</span></li>
+        <li><img src="ilustraciones/icono-cables.webp?v=20261104" width="420" height="374" alt="" loading="lazy" decoding="async"><span>Cables y jumpers</span></li>
+        <li><img src="ilustraciones/icono-placas.webp?v=20261104" width="420" height="358" alt="" loading="lazy" decoding="async"><span>Placas de desarrollo <small>Arduino, ESP32…</small></span></li>
+        <li><img src="ilustraciones/icono-modulos.webp?v=20261104" width="409" height="420" alt="" loading="lazy" decoding="async"><span>Módulos <small>puente H, relés…</small></span></li>
+        <li><img src="ilustraciones/icono-sensores.webp?v=20261104" width="420" height="259" alt="" loading="lazy" decoding="async"><span>Sensores</span></li>
       </ul>
 
       <div class="reglas">
@@ -486,7 +498,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
         <h2 class="pestana" id="t-sumate">¿No tienes qué donar? Dona tu tiempo</h2>
         <p class="introduccion">Puedes ayudar en cualquiera de estas tareas, según el tiempo que tengas.</p>
       </div>
-      <figure class="sumate__imagen"><img src="ilustraciones/voluntarios.webp" width="800" height="800" alt="Tres jóvenes revisan componentes con un multímetro y los organizan en cajas para armar kits" loading="lazy" decoding="async"></figure>
+      <figure class="sumate__imagen"><img src="ilustraciones/voluntarios.webp?v=20261104" width="800" height="800" alt="Tres jóvenes revisan componentes con un multímetro y los organizan en cajas para armar kits" loading="lazy" decoding="async"></figure>
       <ul class="roles">
         <li class="rol">
           <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -553,6 +565,7 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
 <script>
 (() => {
   const C = (typeof CONFIG !== 'undefined' && CONFIG) || {};
+  const conVersion = ruta => C.version ? ruta + (ruta.includes('?') ? '&' : '?') + 'v=' + encodeURIComponent(C.version) : ruta;
   const correo = String(C.correo || '').trim();
   const formulario = String(C.formulario || '').trim();
 
@@ -609,14 +622,14 @@ h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
     img.loading = 'lazy';
     if (foto.pequena) {
       // Versión pequeña para celulares; la grande para pantallas anchas
-      img.srcset = foto.pequena + ' 640w, ' + foto.archivo + ' 1280w';
+      img.srcset = conVersion(foto.pequena) + ' 640w, ' + conVersion(foto.archivo) + ' 1280w';
       img.sizes = i === 0 ? '(min-width: 1080px) 1016px, (min-width: 880px) 100vw, 84vw' : '(min-width: 880px) 330px, 84vw';
     }
     img.addEventListener('error', () => {
       figura.remove();
       if (!galeria.children.length) fotos.hidden = true;
     });
-    img.src = foto.archivo;
+    img.src = conVersion(foto.archivo);
     marco.appendChild(img);
     figura.appendChild(marco);
     if (foto.texto) {
