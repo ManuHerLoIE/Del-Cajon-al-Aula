@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del cajón al aula | Campaña de donación</title>
+<meta name="description" content="Dona los componentes electrónicos que ya no usas. Los convertimos en kits para que estudiantes de un colegio en Rivera, Huila, aprendan electricidad.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Del cajón al aula">
+<meta property="og:description" content="Dona los componentes electrónicos que ya no usas. Los convertimos en kits para que estudiantes de un colegio en Rivera, Huila, aprendan electricidad.">
+<meta property="og:locale" content="es_CO">
+<meta name="theme-color" content="#00629B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M18 30a14 14 0 0 1 28 0v12H18z' fill='%23F5A623'/%3E%3Crect x='14' y='40' width='36' height='6' rx='2' fill='%2300629B'/%3E%3Crect x='24' y='46' width='4' height='16' fill='%2300629B'/%3E%3Crect x='36' y='46' width='4' height='11' fill='%2300629B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap">
+
+<script>
+/* =====================================================================
+   DATOS DE LA CAMPAÑA: edita solo este bloque.
+   Respeta las comillas y las comas al final de cada línea.
+   ===================================================================== */
+var CONFIG = {
+  // Correo de contacto. Escríbelo entre las comillas cuando lo tengas,
+  // por ejemplo: correo: "nombre@ejemplo.com",
+  // Mientras esté vacío, la página dice que pronto se publicará.
+  correo: "",
+
+  // Enlace del formulario para sumarse (por ejemplo, un Google Forms).
+  // Mientras esté vacío, el botón «Quiero sumarme» no aparece.
+  formulario: "",
+
+  // Avance de cada paso: "hecho", "en-curso" o "proximamente".
+  avance: {
+    recibir:  "en-curso",
+    revisar:  "proximamente",
+    armar:    "proximamente",
+    guias:    "proximamente",
+    docente:  "proximamente",
+    talleres: "proximamente",
+    entregar: "proximamente"
+  },
+
+  // Fotos del colegio, junto a index.html. La primera se ve grande.
+  // Para agregar otra: pásala antes por difuminar.html, súbela al repositorio
+  // y copia una línea como estas («pequena» y «alt» son opcionales).
+  fotos: [
+    { archivo: "aula-cortinas.jpg",  pequena: "aula-cortinas-640.jpg",  texto: "Salón con estudiantes", alt: "Estudiantes de uniforme en su salón, con su docente" },
+    { archivo: "aula-abierta-1.jpg", pequena: "aula-abierta-1-640.jpg", texto: "Otra aula", alt: "Estudiantes de uniforme en su salón" },
+    { archivo: "grado-jardin.jpg",   pequena: "grado-jardin-640.jpg",   texto: "Grado jardín", alt: "Niños de grado jardín sentados en mesas rojas, en un salón decorado con banderines" },
+    { archivo: "salon.jpg",          pequena: "salon-640.jpg",          texto: "Otra aula", alt: "Estudiantes en su salón, con su docente" },
+    { archivo: "acto-cancha.jpg",    pequena: "acto-cancha-640.jpg",    texto: "Acto escolar en la cancha municipal", alt: "Acto escolar en la cancha municipal, con banderas de Colombia y globos" },
+    { archivo: "aula-abierta-2.jpg", pequena: "aula-abierta-2-640.jpg", texto: "Otra aula", alt: "Estudiantes frente al tablero, con su docente" },
+    { archivo: "cancha.jpg",         pequena: "cancha-640.jpg",         texto: "Cancha municipal, junto a la plazoleta de comidas de Rivera", alt: "Cancha municipal bajo un árbol grande, junto a la plazoleta de comidas de Rivera" }
+  ]
+};
+</script>
+
+<style>
+:root{
+  --azul:#00629B; --azul-hondo:#004C78; --azul-claro:#E6F0F6; --linea:#C9DCE8; --pista:#8DB8D3;
+  --ambar:#F5A623; --ambar-claro:#FFF2DA;
+  --verde:#2E9E5B; --rojo:#B3261E;
+  --fondo:#F7F7F4; --blanco:#FFFFFF; --tinta:#1F2328; --tinta-2:#4A5561;
+  --titulos:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --texto:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--fondo);color:var(--tinta);font:400 1.0625rem/1.65 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:var(--azul);text-underline-offset:3px}
+p{margin:0 0 1em}
+h1,h2,h3,h4{font-family:var(--titulos);margin:0;line-height:1.15}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:6px}
+.envoltura{width:100%;max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.envoltura{padding:0 32px}}
+
+/* Barra superior */
+.barra{position:sticky;top:0;z-index:20;background:rgba(247,247,244,.94);border-bottom:1px solid var(--linea);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.barra__fila{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.marca{display:flex;align-items:center;gap:8px;font:800 1rem/1 var(--titulos);color:var(--azul);text-decoration:none}
+
+/* Botones */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid transparent;font:700 1rem/1.1 var(--titulos);text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s}
+.boton--azul{background:var(--azul);color:#fff}
+.boton--azul:hover{background:var(--azul-hondo)}
+.boton--borde{background:transparent;color:var(--azul);border-color:var(--azul)}
+.boton--borde:hover{background:var(--azul-claro)}
+.boton--ambar{background:var(--ambar);color:var(--tinta)}
+.boton--ambar:hover{background:#E8951A}
+.boton--claro{background:transparent;color:#fff;border-color:rgba(255,255,255,.85)}
+.boton--claro:hover{background:rgba(255,255,255,.12)}
+.boton--chico{min-height:40px;padding:8px 16px;font-size:.92rem}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+/* Portada */
+.portada{padding:36px 0 44px}
+.portada__rejilla{display:grid;gap:28px;align-items:center}
+@media (min-width:880px){.portada{padding:72px 0}.portada__rejilla{grid-template-columns:1.05fr .95fr;gap:48px}}
+.antetitulo{display:inline-block;margin:0 0 16px;padding:6px 14px;border-radius:999px;background:var(--azul-claro);color:var(--azul);font:700 .95rem/1.3 var(--titulos)}
+.portada h1{font-size:clamp(2.9rem,12vw,5.2rem);font-weight:800;letter-spacing:-.025em;line-height:1;color:var(--azul);text-wrap:balance}
+.portada__texto{max-width:34em;margin:20px 0 0;font-size:1.15rem;color:var(--tinta-2)}
+.portada__organizan{max-width:40em;margin:22px 0 0;font-size:.92rem;color:var(--tinta-2)}
+.ilustracion{width:100%;max-width:540px;height:auto;margin:0 auto}
+
+/* Secciones */
+.seccion{padding:56px 0}
+@media (min-width:880px){.seccion{padding:80px 0}}
+.seccion--blanca{background:var(--blanco);border-block:1px solid var(--linea)}
+.pestana{display:inline-block;margin:0 0 20px;padding:10px 18px 9px;border-radius:12px 12px 12px 0;background:var(--azul);color:#fff;font-size:clamp(1.4rem,4.6vw,2rem);font-weight:800;letter-spacing:-.01em}
+.introduccion{max-width:40em;margin:0 0 30px;font-size:1.08rem;color:var(--tinta-2)}
+
+/* El colegio */
+.colegio__nombre{margin:0;font:800 clamp(1.35rem,4.2vw,1.7rem)/1.25 var(--titulos);color:var(--tinta)}
+.colegio__lugar{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:8px 0 0;color:var(--tinta-2)}
+.colegio__lugar svg{flex:none;color:var(--azul)}
+.colegio__lugar a{font-weight:700}
+.colegio__texto{max-width:40em;margin:20px 0 0;font-size:1.08rem;color:var(--tinta-2)}
+.fotos{margin-top:28px}
+.galeria{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:880px){.galeria{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.foto{min-width:0;margin:0}
+.foto__marco{overflow:hidden;aspect-ratio:4/3;border-radius:12px;background:var(--azul-claro)}
+.foto__marco img{width:100%;height:100%;object-fit:cover}
+.galeria .foto:first-child{grid-column:1/-1}
+.galeria .foto:first-child .foto__marco{aspect-ratio:16/9}
+@media (min-width:880px){.galeria .foto:first-child .foto__marco{aspect-ratio:21/9}}
+.foto figcaption{margin-top:8px;font-size:.92rem;color:var(--tinta-2)}
+.privacidad{display:flex;gap:12px;align-items:flex-start;max-width:46em;margin:24px 0 0;padding:14px 16px;border-radius:12px;background:#EAF5EE;border:1px solid #C3E4CF;color:#1F5A38;font-size:.96rem}
+.privacidad svg{flex:none;margin-top:2px}
+
+/* Recorrido de la donación */
+.recorrido{position:relative;max-width:760px;margin:0;padding:0;list-style:none}
+.recorrido::before{content:"";position:absolute;left:19px;top:21px;bottom:21px;width:4px;border-radius:2px;background:var(--pista)}
+.paso{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:16px;padding:0 0 28px}
+.paso:last-child{padding-bottom:0}
+.paso__nodo{position:relative;z-index:1;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--blanco);border:4px solid var(--azul);color:var(--azul);font:800 1rem/1 var(--titulos)}
+.paso__cabeza{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-top:8px}
+.paso h3{font-size:1.18rem;color:var(--tinta)}
+.paso p{max-width:36em;margin:6px 0 0;color:var(--tinta-2)}
+.estado{display:inline-block;padding:3px 11px;border-radius:999px;background:#ECEFF2;color:var(--tinta-2);font:700 .8rem/1.4 var(--titulos)}
+.paso--hecho .paso__nodo{background:var(--verde);border-color:var(--verde);color:#fff}
+.paso--hecho .estado{background:#E1F3E8;color:#1D6B40}
+.paso--en-curso .paso__nodo{background:var(--ambar);border-color:var(--ambar);color:var(--tinta);box-shadow:0 0 0 7px rgba(245,166,35,.28)}
+.paso--en-curso .estado{background:var(--ambar);color:var(--tinta)}
+
+/* Qué van a aprender */
+.niveles{display:grid;gap:16px}
+@media (min-width:820px){.niveles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.nivel{padding:22px;border-radius:14px;background:var(--fondo);border:1px solid var(--linea)}
+.nivel__etiqueta{display:block;font:700 .92rem/1.3 var(--titulos);color:var(--azul)}
+.nivel h3{margin:6px 0 8px;font-size:1.2rem;color:var(--tinta)}
+.nivel p{margin:0;color:var(--tinta-2)}
+.nivel--final{background:var(--ambar-claro);border-color:#F2CF8E}
+.nivel--final .nivel__etiqueta{color:#8A5300}
+
+/* Cómo donar */
+.subtitulo{margin:0 0 14px;font-size:1.25rem;color:var(--tinta)}
+.subtitulo--separado{margin-top:40px}
+.componentes{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 34px;padding:0;list-style:none}
+.componentes li{padding:9px 14px;border-radius:10px;background:var(--blanco);border:1px solid var(--linea);font-weight:600;line-height:1.3}
+.componentes small{display:block;font-size:.82rem;font-weight:400;color:var(--tinta-2)}
+.reglas{display:grid;gap:16px}
+@media (min-width:760px){.reglas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.regla{padding:22px;border-radius:14px;background:var(--blanco);border:1px solid var(--linea)}
+.regla h3{margin:0 0 14px;font-size:1.15rem;color:var(--tinta)}
+.lista{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.lista li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.lista svg{margin-top:3px}
+.puntos{display:grid;gap:16px}
+@media (min-width:760px){.puntos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.punto{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;padding:22px;border-radius:14px;background:var(--ambar);color:var(--tinta)}
+.punto h4{margin:2px 0 12px;font-size:1.15rem;color:var(--tinta)}
+.punto dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0}
+.punto dt{font-weight:700}
+.punto dd{margin:0}
+
+/* Quiénes somos */
+.equipo{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+@media (min-width:760px){.equipo{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.persona{display:flex;align-items:center;gap:14px;padding:16px;border-radius:14px;background:var(--fondo);border:1px solid var(--linea);font-weight:700;line-height:1.35}
+.persona__iniciales{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:50%;background:var(--azul);color:#fff;font:800 1rem/1 var(--titulos)}
+
+/* Súmate */
+.sumate{padding:56px 0;background:var(--azul);color:#fff}
+@media (min-width:880px){.sumate{padding:80px 0}}
+.sumate .pestana{background:#fff;color:var(--azul)}
+.sumate .introduccion{color:#DCEAF3}
+.roles{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin:0 0 30px;padding:0;list-style:none}
+@media (min-width:880px){.roles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.rol{padding:18px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28)}
+.rol svg{color:var(--ambar)}
+.rol h3{margin:10px 0 4px;font-size:1.02rem;color:#fff}
+.rol p{margin:0;font-size:.93rem;color:#DCEAF3}
+.sumate__contacto{margin:24px 0 0;color:#DCEAF3}
+.sumate__contacto a{color:#fff;font-weight:700}
+
+/* Pie */
+.pie{padding:40px 0 48px;background:var(--blanco);border-top:1px solid var(--linea)}
+.pie h2{margin:0 0 16px;font-size:1rem;font-weight:700;color:var(--azul)}
+.logo{width:auto;height:56px}
+@media (min-width:720px){.logo{height:64px}}
+.pie__nota{margin:28px 0 0;font-size:.88rem;color:var(--tinta-2)}
+
+/* Aviso al copiar el enlace */
+.aviso{position:fixed;left:50%;bottom:20px;z-index:30;max-width:calc(100% - 32px);padding:12px 20px;border-radius:999px;background:var(--tinta);color:#fff;font-weight:600;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity .2s,transform .2s}
+.aviso--visible{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="envoltura barra__fila">
+    <a class="marca" href="#inicio">
+      <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 30a14 14 0 0 1 28 0v12H18z" fill="#F5A623"/><rect x="14" y="40" width="36" height="6" rx="2" fill="#00629B"/><rect x="24" y="46" width="4" height="16" fill="#00629B"/><rect x="36" y="46" width="4" height="11" fill="#00629B"/></svg>
+      Del cajón al aula
+    </a>
+    <a class="boton boton--azul boton--chico" href="#donar">Cómo donar</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="portada">
+    <div class="envoltura portada__rejilla">
+      <div>
+        <p class="antetitulo">Campaña de donación</p>
+        <h1>Del cajón al aula</h1>
+        <p class="portada__texto">Los componentes electrónicos que ya no usas pueden enseñar electricidad a estudiantes de un colegio en Rivera, Huila. Aquí ves qué hacemos con cada donación y cómo puedes ayudar.</p>
+        <div class="acciones">
+          <a class="boton boton--azul" href="#colegio">Conoce el proyecto</a>
+          <a class="boton boton--borde" href="#sumate">Quiero sumarme</a>
+        </div>
+        <p class="portada__organizan">Una iniciativa de estudiantes de la Universidad Distrital Francisco José de Caldas, con el apoyo de la Rama Estudiantil IEEE.</p>
+      </div>
+
+      <svg class="ilustracion" viewBox="0 0 480 250" role="img" aria-labelledby="ilu-titulo">
+        <title id="ilu-titulo">Componentes que salen de un cajón y viajan por una pista de circuito hasta un colegio</title>
+        <defs>
+          <radialGradient id="brillo">
+            <stop offset="0" stop-color="#F5A623" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#F5A623" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <line x1="12" y1="228" x2="468" y2="228" stroke="#C9DCE8" stroke-width="3" stroke-linecap="round"/>
+        <!-- Pistas del circuito -->
+        <path d="M168 206 H222 L250 178 H322 L348 204 H376" fill="none" stroke="#9CC3DA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="pista" d="M168 186 H214 L244 156 H330 L356 182 H376" fill="none" stroke="#00629B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#FFFFFF" stroke="#00629B" stroke-width="3">
+          <circle cx="214" cy="186" r="5.5"/><circle cx="244" cy="156" r="5.5"/><circle cx="330" cy="156" r="5.5"/><circle cx="356" cy="182" r="5.5"/>
+        </g>
+        <!-- Cajón: interior y componentes -->
+        <rect x="30" y="128" width="132" height="22" rx="4" fill="#9C6534"/>
+        <path d="M40 150 C46 110 86 106 98 148" fill="none" stroke="#2E9E5B" stroke-width="4" stroke-linecap="round"/>
+        <path d="M74 150 C86 102 132 104 146 148" fill="none" stroke="#F5A623" stroke-width="4" stroke-linecap="round"/>
+        <g transform="rotate(-8 57 131)">
+          <rect x="36" y="118" width="42" height="27" rx="3" fill="#1F5F8B"/>
+          <rect x="40" y="121" width="34" height="3.5" rx="1" fill="#D9E3EA"/>
+          <rect x="50" y="128" width="14" height="12" rx="1.5" fill="#13293D"/>
+        </g>
+        <g transform="rotate(16 104 124)">
+          <line x1="86" y1="124" x2="122" y2="124" stroke="#8A949E" stroke-width="2"/>
+          <rect x="94" y="118" width="20" height="12" rx="6" fill="#E9C9A0"/>
+          <rect x="98" y="118" width="2.6" height="12" fill="#8B4513"/>
+          <rect x="103" y="118" width="2.6" height="12" fill="#1F2328"/>
+          <rect x="108" y="118" width="2.6" height="12" fill="#D64545"/>
+        </g>
+        <line x1="133" y1="131" x2="133" y2="150" stroke="#8A949E" stroke-width="2"/>
+        <line x1="141" y1="131" x2="141" y2="146" stroke="#8A949E" stroke-width="2"/>
+        <path d="M128 120 a9 9 0 0 1 18 0 v8 h-18 z" fill="#D64545"/>
+        <rect x="126" y="127" width="22" height="4" rx="1" fill="#B83A3A"/>
+        <!-- Cajón: frente -->
+        <rect x="24" y="146" width="144" height="80" rx="10" fill="#D9A066"/>
+        <rect x="24" y="146" width="144" height="9" rx="4.5" fill="#C48A4F"/>
+        <rect x="72" y="181" width="48" height="11" rx="5.5" fill="#8A5A2B"/>
+        <!-- Colegio -->
+        <circle id="halo" cx="441" cy="156" r="36" fill="url(#brillo)" opacity="0">
+          <animate attributeName="opacity" to="1" begin="viaje.end" dur="0.8s" fill="freeze"/>
+        </circle>
+        <polygon points="366,134 420,94 474,134" fill="#00629B"/>
+        <rect x="376" y="132" width="88" height="96" rx="3" fill="#FFFFFF" stroke="#00629B" stroke-width="4"/>
+        <rect x="388" y="146" width="22" height="20" rx="3" fill="#E6F0F6" stroke="#00629B" stroke-width="2.5"/>
+        <rect id="ventana" x="430" y="146" width="22" height="20" rx="3" fill="#E6F0F6" stroke="#00629B" stroke-width="2.5">
+          <animate attributeName="fill" to="#F5A623" begin="viaje.end" dur="0.5s" fill="freeze"/>
+        </rect>
+        <rect x="407" y="186" width="26" height="42" rx="3" fill="#00629B"/>
+        <line x1="420" y1="94" x2="420" y2="68" stroke="#00629B" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="420,68 446,75 420,82" fill="#F5A623"/>
+        <!-- Un componente viaja del cajón al colegio (una sola vez) -->
+        <circle id="viajero" r="6.5" fill="#F5A623" stroke="#FFFFFF" stroke-width="2.5" opacity="0">
+          <set attributeName="opacity" to="1" begin="0s" fill="freeze"/>
+          <animateMotion id="viaje" begin="0s" dur="3s" fill="freeze" calcMode="spline" keyPoints="0;0;1" keyTimes="0;0.2;1" keySplines="0 0 1 1;0.45 0 0.35 1"><mpath href="#pista"/></animateMotion>
+          <animate attributeName="opacity" to="0" begin="viaje.end" dur="0.4s" fill="freeze"/>
+        </circle>
+      </svg>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" id="colegio" aria-labelledby="t-colegio">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-colegio">El colegio</h2>
+      <p class="colegio__nombre">Gimnasio José Eustasio Rivera</p>
+      <p class="colegio__lugar">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+        <span>Rivera, Huila</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=2.776618920375994%2C-75.25725179990066" target="_blank" rel="noopener">Ver en el mapa</a>
+      </p>
+      <p class="colegio__texto">Es un colegio privado pequeño y no tiene cómo comprar materiales para enseñar electrónica. Los kits se quedarán aquí para que sus estudiantes aprendan electricidad con ellos año tras año.</p>
+      <div class="fotos" id="fotos" hidden>
+        <div class="galeria" id="galeria"></div>
+        <p class="privacidad">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.3 7.5 10 4.3-1.7 7.5-5.4 7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Cuidamos a los estudiantes: sus caras se difuminan antes de publicar cada foto, y solo publicamos fotos autorizadas por sus familias y por el colegio.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="recorrido" aria-labelledby="t-recorrido">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-recorrido">¿A dónde va tu donación?</h2>
+      <p class="introduccion">Ningún componente se queda guardado. Este es el recorrido completo y la etapa en la que vamos.</p>
+      <ol class="recorrido">
+        <li class="paso" data-paso="recibir">
+          <span class="paso__nodo" aria-hidden="true">1</span>
+          <div>
+            <div class="paso__cabeza"><h3>Recibimos tu donación</h3><span class="estado">Próximamente</span></div>
+            <p>Llevas tus componentes a uno de los puntos de recaudo, en el Edificio Sabio Caldas.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="revisar">
+          <span class="paso__nodo" aria-hidden="true">2</span>
+          <div>
+            <div class="paso__cabeza"><h3>Revisamos cada componente</h3><span class="estado">Próximamente</span></div>
+            <p>Lo probamos y lo clasificamos. Solo lo que funciona entra a los kits.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="armar">
+          <span class="paso__nodo" aria-hidden="true">3</span>
+          <div>
+            <div class="paso__cabeza"><h3>Armamos kits por equipos</h3><span class="estado">Próximamente</span></div>
+            <p>Cada kit sirve a un equipo de 3 o 4 estudiantes y va en una caja organizadora con la lista de lo que contiene.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="guias">
+          <span class="paso__nodo" aria-hidden="true">4</span>
+          <div>
+            <div class="paso__cabeza"><h3>Escribimos las guías</h3><span class="estado">Próximamente</span></div>
+            <p>Prácticas paso a paso, a baja tensión (con pilas o fuentes de 5 a 12 V) y sin soldar ni cortar patas, para que los componentes duren varios años.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="docente">
+          <span class="paso__nodo" aria-hidden="true">5</span>
+          <div>
+            <div class="paso__cabeza"><h3>Formamos a un docente del colegio</h3><span class="estado">Próximamente</span></div>
+            <p>Así las prácticas no dependen de nosotros y siguen cada año con nuevos estudiantes.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="talleres">
+          <span class="paso__nodo" aria-hidden="true">6</span>
+          <div>
+            <div class="paso__cabeza"><h3>Llevamos los talleres al aula</h3><span class="estado">Próximamente</span></div>
+            <p>Los estudiantes aprenden con los kits, acompañados por su docente.</p>
+          </div>
+        </li>
+        <li class="paso" data-paso="entregar">
+          <span class="paso__nodo" aria-hidden="true">7</span>
+          <div>
+            <div class="paso__cabeza"><h3>Los kits se quedan en el colegio</h3><span class="estado">Próximamente</span></div>
+            <p>Los entregamos con inventario y un acta firmada por el rector, bajo la custodia de un docente. Lo que se gaste, como LEDs, resistencias o pilas, lo reponemos con nuevas donaciones.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" id="aprender" aria-labelledby="t-aprender">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-aprender">Qué van a aprender</h2>
+      <p class="introduccion">Las guías van de lo básico a proyectos con sensores y placas programables.</p>
+      <div class="niveles">
+        <article class="nivel">
+          <span class="nivel__etiqueta">Nivel 1</span>
+          <h3>Electricidad básica</h3>
+          <p>Circuitos con LEDs, resistencias y motores. Qué son el voltaje y la corriente, y cómo se miden con un multímetro.</p>
+        </article>
+        <article class="nivel">
+          <span class="nivel__etiqueta">Nivel 2</span>
+          <h3>Sensores y placas programables</h3>
+          <p>Medir temperatura, humedad o distancia, y controlar luces y motores con Arduino o ESP32.</p>
+        </article>
+        <article class="nivel nivel--final">
+          <span class="nivel__etiqueta">Proyecto final</span>
+          <h3>Una solución para su colegio</h3>
+          <p>Cada equipo construye un prototipo que resuelva un problema real; por ejemplo, regar la huerta escolar de forma automática.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="donar" aria-labelledby="t-donar">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-donar">Cómo donar</h2>
+
+      <h3 class="subtitulo">Qué recibimos</h3>
+      <ul class="componentes">
+        <li>LEDs</li>
+        <li>Resistencias</li>
+        <li>Diodos</li>
+        <li>Motores DC</li>
+        <li>Pilas y baterías recargables</li>
+        <li>Protoboards</li>
+        <li>Cables y jumpers</li>
+        <li>Placas de desarrollo <small>Arduino, ESP32…</small></li>
+        <li>Módulos <small>puente H, relés…</small></li>
+        <li>Sensores</li>
+      </ul>
+
+      <div class="reglas">
+        <div class="regla">
+          <h3>Antes de donar</h3>
+          <ul class="lista">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Que funcione y esté en buen estado.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Que tenga sus patas o terminales completos.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Placas con su cable USB, si lo tienes.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#2E9E5B"/><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pilas y baterías sin golpes, hinchazón ni fugas, con los terminales cubiertos con cinta aislante.</span></li>
+          </ul>
+        </div>
+        <div class="regla">
+          <h3>No recibimos</h3>
+          <ul class="lista">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Componentes quemados o dañados.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Pilas no recargables usadas.</span></li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#B3261E"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span>Celulares, computadores ni electrodomésticos.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subtitulo subtitulo--separado">Puntos de recaudo</h3>
+      <div class="puntos">
+        <article class="punto">
+          <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="#1F2328"/></svg>
+          <div>
+            <h4>Laboratorio de la Facultad de Ingeniería</h4>
+            <dl>
+              <dt>Dónde</dt><dd>Edificio Sabio Caldas, piso 6</dd>
+              <dt>Horario</dt><dd>Mientras el laboratorio esté abierto</dd>
+            </dl>
+          </div>
+        </article>
+        <article class="punto">
+          <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="#1F2328"/></svg>
+          <div>
+            <h4>Sala GISE3-GESETIC</h4>
+            <dl>
+              <dt>Dónde</dt><dd>Edificio Sabio Caldas, piso 8</dd>
+              <dt>Horario</dt><dd>Lunes de 9:00 a. m. a 1:00 p. m.</dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" id="equipo" aria-labelledby="t-equipo">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-equipo">Quiénes somos</h2>
+      <p class="introduccion">Somos estudiantes de la Universidad Distrital Francisco José de Caldas y queremos que los componentes que sobran en la universidad lleguen a un aula. Estos son los primeros integrantes del equipo:</p>
+      <ul class="equipo">
+        <li class="persona"><span class="persona__iniciales" aria-hidden="true">MH</span><span>Manuel Felipe Hernández Losada</span></li>
+        <li class="persona"><span class="persona__iniciales" aria-hidden="true">SE</span><span>Sidney Valeria Espitia Herrera</span></li>
+        <li class="persona"><span class="persona__iniciales" aria-hidden="true">CM</span><span>Carlos Amadeo Mazzillo Parra</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sumate" id="sumate" aria-labelledby="t-sumate">
+    <div class="envoltura">
+      <h2 class="pestana" id="t-sumate">¿No tienes qué donar? Dona tu tiempo</h2>
+      <p class="introduccion">Puedes ayudar en cualquiera de estas tareas, según el tiempo que tengas.</p>
+      <ul class="roles">
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <h3>Diseñar guías</h3>
+          <p>Escribir e ilustrar prácticas paso a paso.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15 15 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Revisar componentes</h3>
+          <p>Probar y clasificar lo que llega.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8 12 4l8.5 4v8.5L12 20.5l-8.5-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 8 12 12l8.5-4M12 12v8.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <h3>Armar kits</h3>
+          <p>Organizar las cajas y su inventario.</p>
+        </li>
+        <li class="rol">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="18" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.4 10.8 7.2-3.6M8.4 13.2l7.2 3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <h3>Compartir la campaña</h3>
+          <p>Contarle a tu curso o a tu grupo de laboratorio.</p>
+        </li>
+      </ul>
+      <div class="acciones">
+        <a class="boton boton--ambar" id="btn-sumarme" href="#sumate" hidden>Quiero sumarme</a>
+        <button class="boton boton--claro" id="btn-compartir" type="button">Compartir la campaña</button>
+      </div>
+      <p class="sumate__contacto" id="contacto">Muy pronto publicaremos aquí el formulario para sumarte y el correo de contacto.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <h2>Apoyan</h2>
+    <img class="logo" src="data:image/png;base64,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" width="888" height="192" alt="Rama Estudiantil IEEE de la Universidad Distrital Francisco José de Caldas">
+    <p class="pie__nota">Del cajón al aula es una iniciativa de estudiantes de la Universidad Distrital Francisco José de Caldas, en Bogotá.</p>
+  </div>
+</footer>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const C = (typeof CONFIG !== 'undefined' && CONFIG) || {};
+  const correo = String(C.correo || '').trim();
+  const formulario = String(C.formulario || '').trim();
+
+  // Botón «Quiero sumarme»: formulario si existe; si no, correo; si no hay ninguno, no aparece
+  const sumarme = document.getElementById('btn-sumarme');
+  if (formulario) {
+    sumarme.href = formulario;
+    sumarme.target = '_blank';
+    sumarme.rel = 'noopener';
+    sumarme.hidden = false;
+  } else if (correo) {
+    sumarme.href = 'mailto:' + correo + '?subject=' + encodeURIComponent('Quiero sumarme a Del cajón al aula');
+    sumarme.hidden = false;
+  }
+
+  // Contacto
+  const contacto = document.getElementById('contacto');
+  if (correo) {
+    contacto.textContent = '¿Tienes preguntas? Escríbenos a ';
+    const enlace = document.createElement('a');
+    enlace.href = 'mailto:' + correo;
+    enlace.textContent = correo;
+    contacto.appendChild(enlace);
+  } else if (formulario) {
+    contacto.textContent = 'Muy pronto publicaremos aquí el correo de contacto.';
+  }
+
+  // Avance de cada paso
+  const ETIQUETAS = { 'hecho': 'Hecho', 'en-curso': 'En curso', 'proximamente': 'Próximamente' };
+  document.querySelectorAll('[data-paso]').forEach(paso => {
+    let estado = (C.avance || {})[paso.dataset.paso];
+    if (!ETIQUETAS[estado]) estado = 'proximamente';
+    paso.classList.add('paso--' + estado);
+    paso.querySelector('.estado').textContent = ETIQUETAS[estado];
+  });
+
+  // Galería: solo se muestra si hay fotos; una foto que no cargue se quita
+  const fotos = document.getElementById('fotos');
+  const galeria = document.getElementById('galeria');
+  (C.fotos || []).forEach((foto, i) => {
+    const figura = document.createElement('figure');
+    figura.className = 'foto';
+    const marco = document.createElement('div');
+    marco.className = 'foto__marco';
+    const img = new Image();
+    img.alt = foto.alt || foto.texto || '';
+    img.decoding = 'async';
+    img.loading = 'lazy';
+    if (foto.pequena) {
+      // Versión pequeña para celulares; la grande para pantallas anchas
+      img.srcset = foto.pequena + ' 640w, ' + foto.archivo + ' 1280w';
+      img.sizes = i === 0 ? '(min-width: 1080px) 1016px, 100vw' : '(min-width: 880px) 330px, 50vw';
+    }
+    img.addEventListener('error', () => {
+      figura.remove();
+      if (!galeria.children.length) fotos.hidden = true;
+    });
+    img.src = foto.archivo;
+    marco.appendChild(img);
+    figura.appendChild(marco);
+    if (foto.texto) {
+      const pie = document.createElement('figcaption');
+      pie.textContent = foto.texto;
+      figura.appendChild(pie);
+    }
+    galeria.appendChild(figura);
+  });
+  fotos.hidden = !galeria.children.length;
+
+  // Compartir la campaña
+  const aviso = document.getElementById('aviso');
+  let temporizador;
+  const avisar = texto => {
+    aviso.textContent = texto;
+    aviso.classList.add('aviso--visible');
+    clearTimeout(temporizador);
+    temporizador = setTimeout(() => aviso.classList.remove('aviso--visible'), 3000);
+  };
+  document.getElementById('btn-compartir').addEventListener('click', async () => {
+    const url = location.href.split('#')[0];
+    const datos = {
+      title: 'Del cajón al aula',
+      text: 'Dona los componentes electrónicos que ya no usas: se convierten en kits para que estudiantes de un colegio en Rivera, Huila, aprendan electricidad.',
+      url
+    };
+    if (navigator.share) {
+      try { await navigator.share(datos); } catch (e) { /* el usuario canceló */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      avisar('Enlace copiado');
+    } catch (e) {
+      avisar(url);
+    }
+  });
+
+  // Sin animación para quien la tiene desactivada en su dispositivo
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const svg = document.querySelector('.ilustracion');
+    svg.querySelectorAll('animate, animateMotion, set').forEach(a => a.remove());
+    document.getElementById('viajero').remove();
+    document.getElementById('ventana').setAttribute('fill', '#F5A623');
+    document.getElementById('halo').setAttribute('opacity', '1');
+  }
+})();
+</script>
+</body>
+</html>
